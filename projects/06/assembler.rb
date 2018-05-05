@@ -8,13 +8,13 @@ class Parser
       line.chomp!
       line.sub!(/\/\/.*/m, '')
       line.strip!
-      unless line.empty? 
-        @commands << line 
+      unless line.empty?
+        @commands << line
       end
     end }
     @index = 0
   end
-  
+
   def commands?
     !@commands[@index].nil?
   end
@@ -66,7 +66,7 @@ end
 class Code
   def dest(mnemonic)
     if mnemonic.match(/^[A-Z]+=/)
-      mnemonic = mnemonic.to_s.sub(/=.+/, '') 
+      mnemonic = mnemonic.to_s.sub(/=.+/, '')
     end
     case mnemonic
     when 'M'
@@ -92,7 +92,7 @@ class Code
     elsif mnemonic.match(/^[A-Z0-9]?;/)
       mnemonic = mnemonic.to_s.sub(/;[A-Z]+$/, '')
     end
-    case mnemonic 
+    case mnemonic
     when '0'
       '0101010'
     when 'D+A'
@@ -158,7 +158,7 @@ end
 class SymbolTable
   attr_reader :symbol_table
   def initialize
-    @symbol_table = {} 
+    @symbol_table = {}
     @symbol_table[:R0]     = 0
     @symbol_table[:R1]     = 1
     @symbol_table[:R2]     = 2
@@ -233,4 +233,3 @@ end
 hack_file = ARGV[0].sub(/\.asm/, '.hack')
 hack_content = hacked_commands.join("\n")
 File.write(hack_file, hack_content)
-
