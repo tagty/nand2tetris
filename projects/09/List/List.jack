@@ -10,7 +10,7 @@ class List {
 
     /* Creates a List. */
     constructor List new(int car, List cdr) {
-        let data = car;       // the identifiers car and cdr are used in 
+        let data = car;       // the identifiers car and cdr are used in
         let next = cdr;       // memory of the Lisp programming language
         return this;
     }
@@ -41,6 +41,17 @@ class List {
         return;
     }
 
-    // More list processing methods can come here.
+    /** Returns length of list. */
+    method int length() {
+      var List current;
+      var Int i;
+      let current = this;
+      while (~(current = null)) {
+        let i = i + 1;
+        let current = current.getNext();
+      }
+      return i;
+    }
 
+    // More list processing methods can come here.
 }
